@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: matrix-sygnal
+  namespace: {{ .Values.namespace }}
+data:
+  sygnal.yaml: |-
+{{ toYaml .Values.config | indent 4 }}

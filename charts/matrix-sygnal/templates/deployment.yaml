@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-sygnal
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: sygnal
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sygnal
+    spec:
+      containers:
+        - image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          name: sygnal
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            - name: sygnal-config
+              mountPath: /configs/sygnal.yaml
+              subPath: sygnal.yaml
+              readOnly: true
+            {{- range .Values.filesFromSecrets }}
+            - name: {{ .secretName }}
+              mountPath: /configs/{{ .fileName }}
+              subPath: {{ .fileName }}
+              readOnly: true
+            {{- end }}
+          env:
+            - name: SYGNAL_CONF
+              value: /configs/sygnal.yaml
+          ports:
+            - containerPort: 5000
+      volumes:
+        - name: sygnal-config
+          configMap:
+            name: matrix-sygnal
+        {{- range .Values.filesFromSecrets }}
+        - name: {{ .secretName }}
+          secret:
+            secretName: {{ .secretName }}
+        {{- end }}
