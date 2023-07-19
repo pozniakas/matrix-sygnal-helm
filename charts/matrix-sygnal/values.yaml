@@ -1,27 +1,11 @@
-# Default values for hello-world.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+namespace: matrix
 
-replicaCount: 1
-
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-
-nameOverride: ""
-fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+privateKeySecret:
+  secretName: "matrix-private-key"
+  fileName: "private-key.pem"
 
 service:
-  type: ClusterIP
-  port: 80
+  type: ClusterIP # Possible values: ClusterIP, NodePort, LoadBalancer, None (for headless service)
+  port: 5000
+  nodePort: null # Specify the nodePort value if type is NodePort, leave it as null otherwise
+  annotations: {} # Add your annotations here in the format: annotationKey: annotationValue
