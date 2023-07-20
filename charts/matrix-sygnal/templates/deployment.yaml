@@ -50,7 +50,7 @@ spec:
       volumes:
         - name: sygnal-config
           configMap:
-            name: sygnal-cm
+            name: matrix-sygnal
         - name: private-key
           secret:
             secretName: {{ .Values.privateKeySecret.secretName }}
