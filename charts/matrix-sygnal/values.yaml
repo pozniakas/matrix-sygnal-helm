@@ -2,7 +2,7 @@ namespace: matrix
 
 privateKeySecret:
   secretName: "matrix-private-key"
-  fileName: "private-key.pem"
+  fileName: "private_key.pem"
 
 service:
   type: ClusterIP # Possible values: ClusterIP, NodePort, LoadBalancer, None (for headless service)
