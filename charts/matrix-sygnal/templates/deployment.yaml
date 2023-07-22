@@ -38,10 +38,6 @@ spec:
               mountPath: /configs/sygnal.yaml
               subPath: sygnal.yaml
               readOnly: true
-            - name: private-key
-              mountPath: /configs/private_key.pem
-              subPath: {{ .Values.privateKeySecret.fileName }}
-              readOnly: true
             {{- range .Values.filesFromSecrets }}
             - name: {{ .secretName }}
               mountPath: /configs/{{ .fileName }}
