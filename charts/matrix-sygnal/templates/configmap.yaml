@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   sygnal.yaml: |-
-    {{ toYaml .Values.config | indent 4 }}
+{{ toYaml .Values.config | indent 4 }}
