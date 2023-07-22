@@ -1,5 +1,9 @@
 namespace: matrix
 
+image:
+  name: "matrixdotorg/sygnal"
+  tag: "v0.12.0"
+
 privateKeySecret:
   secretName: "matrix-private-key"
   fileName: "private_key.pem"
