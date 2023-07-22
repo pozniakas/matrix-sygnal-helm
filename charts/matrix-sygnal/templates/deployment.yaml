@@ -42,6 +42,12 @@ spec:
               mountPath: /configs/private_key.pem
               subPath: {{ .Values.privateKeySecret.fileName }}
               readOnly: true
+            {{- range .Values.filesFromSecrets }}
+            - name: {{ .secretName }}
+              mountPath: /configs/{{ .fileName }}
+              subPath: {{ .fileName }}
+              readOnly: true
+            {{- end }}
           env:
             - name: SYGNAL_CONF
               value: /configs/sygnal.yaml
@@ -51,6 +57,8 @@ spec:
         - name: sygnal-config
           configMap:
             name: matrix-sygnal
-        - name: private-key
+        {{- range .Values.filesFromSecrets }}
+        - name: {{ .secretName }}
           secret:
-            secretName: {{ .Values.privateKeySecret.secretName }}
+            secretName: {{ .secretName }}
+        {{- end }}
