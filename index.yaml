@@ -3,6 +3,16 @@ entries:
   matrix-sygnal:
   - apiVersion: v2
     appVersion: v0.12.0
+    created: "2023-07-22T20:15:05.853753293Z"
+    description: A Helm chart for Matrix Sygnal application.
+    digest: a5dfca4c0bf96bb5a86c4dd4ebbe1db3530e0bea3db432c99528a1b267407dbe
+    name: matrix-sygnal
+    type: application
+    urls:
+    - https://github.com/pozniakas/matrix-sygnal-helm/releases/download/matrix-sygnal-0.1.7/matrix-sygnal-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: v0.12.0
     created: "2023-07-22T20:03:09.741879932Z"
     description: A Helm chart for Matrix Sygnal application.
     digest: 5b1db7bedabc1b4e84098f10b2b37c2c142dfc45155fb4ff0c068ff9a90a5cb5
@@ -71,4 +81,4 @@ entries:
     urls:
     - https://github.com/pozniakas/matrix-sygnal-helm/releases/download/matrix-sygnal-0.1.0/matrix-sygnal-0.1.0.tgz
     version: 0.1.0
-generated: "2023-07-22T20:03:09.742214632Z"
+generated: "2023-07-22T20:15:05.853787594Z"
